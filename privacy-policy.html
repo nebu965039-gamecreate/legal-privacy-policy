@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>プライバシーポリシー — SecretAlly</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font-family: -apple-system, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+         line-height: 1.8; max-width: 760px; margin: 0 auto; padding: 2rem 1.2rem; }
+  h1 { font-size: 1.6rem; } h2 { font-size: 1.2rem; margin-top: 2rem; }
+  h3 { font-size: 1.05rem; margin-top: 1.4rem; } h4 { font-size: .98rem; margin: 1rem 0 .3rem; color: #555; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+  th, td { border: 1px solid #8888; padding: .5rem .6rem; text-align: left; font-size: .95rem; }
+  code { background: #8881; padding: .1rem .3rem; border-radius: 3px; }
+  .updated { color: #888; font-size: .9rem; }
+</style>
+</head>
+<body>
+<h1>プライバシーポリシー — SecretAlly(旧名: 商談メモ)</h1>
+<p class="updated">最終更新日: 2026-10-03</p>
+<p>本プライバシーポリシーは、Androidアプリ「SecretAlly」(旧名称: 商談メモ、以下「本アプリ」)における利用者情報の取扱いについて定めるものです。</p>
+
+<h2>1. 事業者情報</h2>
+<ul>
+  <li>提供者: manaapps</li>
+  <li>連絡先: <a href="mailto:contact.manaapps@gmail.com">contact.manaapps@gmail.com</a></li>
+</ul>
+
+<h2>2. 収集する情報と利用目的</h2>
+<h3>2.1 音声(マイク)</h3>
+<p>本アプリは商談の録音のためにマイクへのアクセス(<code>RECORD_AUDIO</code> 権限)を使用します。録音開始時に「対面」または「リモート会議」のいずれかのモードを利用者が選択します。</p>
+<h4>対面モード(既定)</h4>
+<p>音声は端末内のオンデバイス音声認識機能によってその場で文字起こしされます。<strong>録音した音声データを端末外へ送信することはありません。</strong>文字起こしに用いた音声はファイルとして保存しません。</p>
+<h4>リモート会議モード(利用者が明示的に選択した場合のみ)</h4>
+<p>Web会議などスピーカー越しの相手の声を文字起こしするためのモードです。オンデバイス音声認識では遠くの音声を正しく認識できないため、次の方法で処理します。</p>
+<ul>
+  <li>録音した音声は端末内に一時ファイルとして保存され、<strong>文字起こしのためだけに、本アプリ提供者が運用する中継サーバー(Cloudflare Workers)経由で Cloudflare の音声認識機能(Workers AI / Whisper)へ HTTPS 通信で送信</strong>されます。</li>
+  <li>送信された音声は文字起こし結果の生成にのみ使用されます。<strong>本アプリ提供者・中継サーバーは音声を保存しません。</strong>Cloudflare 社によるデータの取扱いは<a href="https://www.cloudflare.com/privacypolicy/">同社のプライバシーポリシー</a>に従います(Cloudflare は Workers AI の入力・出力を保存せず、モデルの学習に使用しないと表明しています)。</li>
+  <li>文字起こしが完了(または失敗)すると、端末内の一時音声ファイルは削除されます。</li>
+  <li>このモードを初めて選択する際に、音声をサーバーへ送信することへの同意を確認します。同意しない場合はリモート会議モードを利用できません。</li>
+</ul>
+<h3>2.2 文字起こしテキスト・商談メモ</h3>
+<p>文字起こしテキスト、要約結果、クライアント名、商談タイトルは<strong>利用者の端末内のデータベースにのみ保存</strong>されます。要約生成のため、<strong>文字起こしテキストを Anthropic PBC の Claude API へ HTTPS 通信で送信</strong>します。送信されたテキストは要約結果の生成にのみ使用され、Anthropic 社の取扱いは<a href="https://www.anthropic.com/legal/privacy">同社のプライバシーポリシー</a>に従います。本アプリの提供者は商談内容を独自のサーバーに収集・保存しません。</p>
+<h3>2.3 端末識別子(クレジットの管理)</h3>
+<p>毎月のクレジット(無料利用枠)の管理のため、Android の端末識別子(<code>ANDROID_ID</code>)を <strong>SHA-256 でハッシュ化した値</strong>をキーとして、利用状況を端末内データベースに保存します。元の識別子そのものは保存しません。</p>
+<p>アプリ内課金「チャージ」(2.7)を利用する場合、またはクレジットの残りが無くなってチャージ分の残高を確認する場合に限り、<strong>このハッシュ値を、提供者が運用する中継サーバー(Cloudflare Workers / D1)へ HTTPS 通信で送信し、チャージ分の残高の管理のために保存</strong>します。ハッシュ値から氏名・連絡先などの個人を特定することはできません。この目的以外(広告、分析、第三者への提供など)には使用しません。</p>
+<h3>2.4 広告(AdMob)</h3>
+<p>本アプリは Google の AdMob を利用して広告を表示します。AdMob は広告識別子、デバイス情報、おおよその位置情報、アプリの利用状況などを収集する場合があります。Google による取扱いは<a href="https://policies.google.com/technologies/ads">Google 広告ポリシー</a>および<a href="https://policies.google.com/privacy">Google プライバシーポリシー</a>に従います。</p>
+<h3>2.5 エクスポート機能・データのバックアップ</h3>
+<p>PDF / Word / メール文面のエクスポートは、利用者が共有先・保存先を明示的に選択した場合にのみ当該アプリ・サービスへデータが渡されます。</p>
+<p>設定画面の「データのバックアップ」から、利用者は自身の操作でアプリ内の全データを1つのファイル(JSON。任意でパスワード暗号化)に書き出し、任意の保存先(端末内・クラウドドライブ等、利用者が選択)へ保存できます。書き出し先は利用者が管理するものであり、本アプリの提供者へは送信されません。復元も利用者が選んだファイルからの手動操作です。</p>
+<h3>2.6 利用状況データ・クラッシュ情報(Firebase Analytics / Crashlytics)</h3>
+<p>本アプリはアプリの改善のため、Google の Firebase Analytics(利用状況の分析)および Firebase Crashlytics(クラッシュ・不具合の検知)を利用します。収集する情報は、アプリの起動状況、機能の利用イベント(例: 打ち合わせの保存、Pro登録)、クラッシュ発生時の診断情報(エラーの種類・発生箇所等のスタックトレース)、およびこれらに付随する端末情報(OSバージョン・端末モデル等)・匿名の識別子です。<strong>商談内容・文字起こしテキスト・クライアント名・音声データは、Firebase Analytics/Crashlyticsへは一切送信しません。</strong>設定画面の「利用状況データを送信」からいつでもON/OFFを切り替えられます(既定はON)。Google による取扱いは<a href="https://policies.google.com/privacy">Google プライバシーポリシー</a>に従います。</p>
+<h3>2.7 アプリ内課金(Pro サブスクリプション・チャージ)</h3>
+<p>本アプリには、Google Play の課金システムを利用した、Pro(月額サブスクリプション)と、クレジットの追加購入「チャージ」(10クレジット単位)があります。<strong>お支払いの処理は Google Play が行います。</strong>提供者は、クレジットカード番号などの決済情報を取得・保存しません。</p>
+<p>Pro の購入状態は、Google Play から端末上で確認します。提供者のサーバーへ購入情報を送信することはありません。</p>
+<p>チャージを購入した場合、購入の正当性の確認と残高の付与のため、<strong>購入トークン・商品ID・注文ID・購入日時・端末識別子のハッシュ値を中継サーバー(Cloudflare Workers / D1)へ HTTPS 通信で送信し、保存</strong>します。中継サーバーは購入トークンを Google の Google Play Developer API に送って購入の事実を確認します。中継サーバーには、チャージ分の残高(購入ごとの残数と有効期限)と、残高の消費・取り消しの記録(記録ごとの識別子・数量・日時)も保存されます。<strong>チャージ分は購入日から3か月で失効します。</strong></p>
+<p>利用目的は、チャージ分の残高管理、二重付与・不正利用の防止、問い合わせへの対応です。チャージ関連の情報(購入の記録・残高・消費の記録)は、購入の日(消費の記録は記録の日)から<strong>12か月が経過すると自動的に削除</strong>します。それ以前でも、利用者から削除の依頼があった場合は削除します(方法は「7. データの削除」)。商談の内容(音声・文字起こし・要約)は、課金の機能で中継サーバーに保存されることはありません。</p>
+
+<h2>3. データの保存場所と第三者提供</h2>
+<table>
+  <tr><th>データ</th><th>保存場所</th><th>第三者提供</th></tr>
+  <tr><td>音声データ(対面モード)</td><td>保存しない</td><td>なし(端末外に出ない)</td></tr>
+  <tr><td>音声データ(リモート会議モード)</td><td>端末内に一時保存し、文字起こし後に削除</td><td>文字起こしのため中継サーバー経由で Cloudflare(Workers AI / Whisper)へ送信。提供者・Cloudflare とも保存しない</td></tr>
+  <tr><td>文字起こし・商談メモ</td><td>端末内のみ</td><td>要約時に文字起こしテキストを Anthropic へ送信。利用者が「データのバックアップ」を実行した場合のみ、利用者が選んだ保存先へ利用者自身の操作で書き出される</td></tr>
+  <tr><td>端末識別子ハッシュ</td><td>端末内。チャージを利用する場合のみ、残高管理のため中継サーバー(Cloudflare D1)にも保存</td><td>なし(Cloudflare は提供者の委託先としてサーバーを運用)</td></tr>
+  <tr><td>購入情報(チャージ。購入トークン・注文ID・購入日時・残高・消費記録)</td><td>中継サーバー(Cloudflare D1)</td><td>購入の確認のため、購入トークンを Google(Google Play Developer API)へ送信。決済情報(カード番号等)は取得しない</td></tr>
+  <tr><td>広告関連データ</td><td>—</td><td>Google(AdMob)が収集</td></tr>
+  <tr><td>利用状況・クラッシュ情報</td><td>—</td><td>Google(Firebase Analytics/Crashlytics)が収集。商談内容・音声・クライアント情報は含まない。設定画面からOFFにできる</td></tr>
+</table>
+<p>本アプリの提供者は、上記以外に利用者情報を第三者へ販売・提供しません。</p>
+
+<h2>4. 端末のバックアップ</h2>
+<p>本アプリは、Android のシステムによるクラウドバックアップおよび端末間データ転送の対象外に設定しています。本アプリで作成したデータが、利用者本人の端末外に自動的に保存・転送されることはありません。</p>
+
+<h2>5. 使用する権限</h2>
+<table>
+  <tr><th>権限</th><th>用途</th></tr>
+  <tr><td>マイク(<code>RECORD_AUDIO</code>)</td><td>商談の録音・文字起こし</td></tr>
+  <tr><td>インターネット(<code>INTERNET</code>)</td><td>要約API(Claude)との通信、リモート会議モードでの文字起こし(Cloudflare)との通信、チャージ分の残高の確認・購入の確認(中継サーバー)、広告の取得、利用状況データ・クラッシュ情報の送信(Firebase)</td></tr>
+  <tr><td>課金(<code>com.android.vending.BILLING</code>)</td><td>Google Play を通じた Pro の購読・チャージの購入</td></tr>
+  <tr><td>通知(<code>POST_NOTIFICATIONS</code>)</td><td>打ち合わせ・ToDo 期限のリマインド通知(利用者が任意でON)</td></tr>
+</table>
+
+<h2>6. 児童のプライバシー</h2>
+<p>本アプリは13歳未満の児童を対象としていません。</p>
+
+<h2>7. データの削除</h2>
+<p>アプリ内で作成したデータはアプリ内の操作で個別に削除できます。アプリをアンインストールすると、端末内に保存されたすべてのデータが削除されます。中継サーバーに保存されたチャージ関連の情報(2.3・2.7)は、アンインストールでは削除されません。次のとおり削除できます。</p>
+<ul>
+  <li><strong>自動削除</strong>: 購入の日(消費の記録は記録の日)から12か月が経過すると、自動的に削除されます。</li>
+  <li><strong>削除の依頼</strong>: <a href="mailto:contact.manaapps@gmail.com">contact.manaapps@gmail.com</a> 宛てに、件名を「データ削除の依頼」として、本文に <strong>Google Play の注文番号(<code>GPA.</code> で始まる番号)</strong>をご記入ください。注文番号は、Google Play から届く領収書のメール、または Google Play の「お支払いと定期購入」の購入履歴で確認できます。注文番号から該当する記録を特定して削除し、完了をメールでお知らせします(原則として30日以内)。</li>
+  <li>削除すると、残っているチャージ分も使えなくなり、元に戻せません。</li>
+  <li>チャージを購入していない場合、サーバーには保存される情報はありません。</li>
+</ul>
+
+<h2>8. 本ポリシーの変更</h2>
+<p>本ポリシーは必要に応じて改定されることがあります。</p>
+
+<h2>9. お問い合わせ</h2>
+<p>本ポリシーに関するお問い合わせは <a href="mailto:contact.manaapps@gmail.com">contact.manaapps@gmail.com</a> までご連絡ください。</p>
+</body>
+</html>
